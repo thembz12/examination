@@ -1,19 +1,21 @@
 const express = require ("express")
-const port = 9090
+
+const dotenv=require("dotenv").config()
+const port = process.env.port
 const app = express()
 const mongoose = require ("mongoose")
 
 app.use(express.json())
-
+//  i am trying to test run something
 //connect to mongoose
-mongoose.connect("mongodb+srv://oyin1239:HP07seno5GITMAxL@clusterthemb.grjqqdx.mongodb.net/").then(()=>{
-    console.log("database is established successfully")
+mongoose.connect(process.env.db).then(()=>{
+    console.log("database  is established successfully")
     
     app.listen(port,()=>{
-        console.log(`application is listening ${port}`); 
+        console.log(`application is now listening ${port}`); 
     })
     }).catch((error)=>{
-        console.log(`unable to connect database because ${error}`);
+        console.log(`unable to  connect database because ${error}`);
 })
 const date = new Date
 //connect to schema
